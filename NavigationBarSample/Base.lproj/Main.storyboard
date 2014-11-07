@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TWg-cu-ZL4">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--ブックマーク-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXa-CQ-jSP">
+                                <rect key="frame" x="255" y="285" width="90" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IB1-hg-FvI"/>
+                                    <constraint firstAttribute="width" constant="90" id="h5l-CY-rnv"/>
+                                </constraints>
+                                <state key="normal" title="フォルダー１">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xRB-qn-fv7" kind="push" id="DWU-XS-Khx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="FXa-CQ-jSP" secondAttribute="centerX" id="S48-4E-vqu"/>
+                            <constraint firstAttribute="centerY" secondItem="FXa-CQ-jSP" secondAttribute="centerY" id="zt6-vf-UVg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ブックマーク" id="uLA-Kq-4Lb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1316" y="1034"/>
+        </scene>
+        <!--フォルダー１-->
+        <scene sceneID="bZc-AY-uGy">
+            <objects>
+                <viewController id="xRB-qn-fv7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dJh-oN-ZLq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mig-qA-Eqb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2fX-Jh-llS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="フォルダー１" id="sWO-dS-qXT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7rr-wi-X7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028" y="1034"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZEh-A7-gcf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TWg-cu-ZL4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JqP-NM-GpK" customClass="CustomNavigationBar">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="VA3-Nl-opV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yvd-22-nMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="518" y="1034"/>
+        </scene>
+    </scenes>
+</document>
