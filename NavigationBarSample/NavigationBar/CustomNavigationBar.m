@@ -10,6 +10,12 @@
 
 const CGFloat customNavigationBarHeightIncrease = 38.f;
 
+@interface CustomNavigationBar()
+
+@property (nonatomic, strong) UISegmentedControl* segmentedControl;
+
+@end
+
 @implementation CustomNavigationBar
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -45,14 +51,14 @@ const CGFloat customNavigationBarHeightIncrease = 38.f;
     float segmentedControlHeight = 30.0f;
     float segmentedControlPositionY = 80.0f;
     NSArray* items = @[@"📖", @"👓", @"@"];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
-    segmentedControl.frame = CGRectMake(
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
+    _segmentedControl.frame = CGRectMake(
                                         screenWidth / 2 - segmentedControlWidth / 2,
                                         segmentedControlPositionY,
                                         segmentedControlWidth,
                                         segmentedControlHeight
                                         );
-    [self addSubview:segmentedControl];
+    [self addSubview:_segmentedControl];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -66,17 +72,43 @@ const CGFloat customNavigationBarHeightIncrease = 38.f;
     
     NSArray *classNamesToReposition = @[@"_UINavigationBarBackground"];
     for (UIView *view in [self subviews]) {
-        
         if ([classNamesToReposition containsObject:NSStringFromClass([view class])]) {
-            
             CGRect bounds = [self bounds];
             CGRect frame = [view frame];
             frame.origin.y = bounds.origin.y + customNavigationBarHeightIncrease - 20.f;
             frame.size.height = bounds.size.height + 20.f;
             [view setFrame:frame];
-            
         }
     }
+    
+    float diffY;
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if ([@[@(UIDeviceOrientationLandscapeLeft), @(UIDeviceOrientationLandscapeRight)] containsObject:@(orientation)]) {
+        diffY = -10;
+        [self setTransform:CGAffineTransformMakeTranslation(0, -20)];
+    } else {
+        diffY = 0;
+        [self setTransform:CGAffineTransformMakeTranslation(0, -(customNavigationBarHeightIncrease))];
+    }
+    
+    float screenWidth = [UIScreen mainScreen].bounds.size.width;
+    float segmentedControlWidth = 200.0f;
+    float segmentedControlHeight = 30.0f;
+    float segmentedControlPositionY = 80.0f + diffY;
+    _segmentedControl.frame = CGRectMake(
+                                        screenWidth / 2 - segmentedControlWidth / 2,
+                                        segmentedControlPositionY,
+                                        segmentedControlWidth,
+                                        segmentedControlHeight
+                                        );
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    if ( CGRectContainsPoint(_segmentedControl.frame, point) ) {
+        return _segmentedControl;
+    }
+    UIView* hitView = [super hitTest:point withEvent:event];
+    return hitView;
 }
 
 @end
